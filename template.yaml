@@ -20,7 +20,7 @@ Resources:
       CompatibleRuntimes:
         - nodejs18.x
     Metadata:
-      BuildMethod: nodejs_npm
+      BuildMethod: nodejs18.x
 
   UUIDFunction:
     Type: AWS::Serverless::Function
