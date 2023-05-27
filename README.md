@@ -48,10 +48,10 @@ Follow these steps to clone and deploy the repository:
     ```bash
     sam build
     ```
-4I apologize for the repeated cut-off. Here's the complete deployment steps:
 
 
-4. **Deploy the SAM application**: This will create a CloudFormation stack and deploy your resources. It will prompt for parameters, and for the first deployment, it is recommended to use default parameters.
+4. **Deploy the SAM application**: This will create a CloudFormation stack and deploy your resources. It will prompt for parameters, and for the first deployment, it is recommended to use default parameters. When answering the following `   UUIDFunction may not have authorization defined, Is this okay? [y/N]:
+   ` reply y 
     ```bash
     sam deploy --guided
     ```

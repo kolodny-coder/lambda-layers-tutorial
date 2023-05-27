@@ -16,9 +16,11 @@ Resources:
     Properties:
       LayerName: UUIDLayer
       Description: Layer for uuid
-      ContentUri: uuid-layer/
+      ContentUri: uuid-layer/nodejs/
       CompatibleRuntimes:
         - nodejs18.x
+    Metadata:
+      BuildMethod: nodejs_npm
 
   UUIDFunction:
     Type: AWS::Serverless::Function
