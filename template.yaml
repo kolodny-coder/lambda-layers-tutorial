@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  uuid-demo
+
+  Sample SAM Template for uuid-demo
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  UUIDLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: UUIDLayer
+      Description: Layer for uuid
+      ContentUri: uuid-layer/
+      CompatibleRuntimes:
+        - nodejs18.x
+
+  UUIDFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: UUIDFunction
+      Description: Function to generate UUID
+      CodeUri: src/
+      Handler: app.handler
+      Runtime: nodejs18.x
+      Layers:
+        - !Ref UUIDLayer
+      Events:
+        UUIDApi:
+          Type: Api
+          Properties:
+            Path: /uuid
+            Method: get
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  UUIDFunctionApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  UUIDFunction:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt UUIDFunction.Arn
+  UUIDFunctionnIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt UUIDFunctionRole.Arn
